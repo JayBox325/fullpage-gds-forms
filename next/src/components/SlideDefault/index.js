@@ -1,4 +1,4 @@
-import { BackLink, Button, ButtonArrow, DateField, Details, ErrorText, GridCol, GridRow, H1, Heading, HintText, InputField, Label, LabelText, LeadParagraph, Link, Main, Paragraph, Select } from 'govuk-react'
+import { BackLink, Button, ButtonArrow, DateField, Details, ErrorText, GridCol, GridRow, H1, H2, Heading, HintText, InputField, Label, LabelText, LeadParagraph, Link, Main, Paragraph, Select } from 'govuk-react'
 import { Input } from 'postcss'
 
 export default function SlideDefault(props) {
@@ -17,34 +17,33 @@ export default function SlideDefault(props) {
     } = item || {}
 
     return (
-        <div className="section bg-white">
+        <div className="section">
 
             <Main>
                 <GridRow className="py-6 md:py-10 lg:py-12 xl:py-16 2xl:py-18">
                     <GridCol>
                         <div className="flex flex-col gap-6 md:gap-8 xl:gap-10">
 
-                            <div className="">
-
-                                {title ? (
-                                    <H1 size="LARGE">{title}</H1>
-                                ) : ''}
-
-                                {introduction ? (
-                                    <LeadParagraph>{introduction}</LeadParagraph>
-                                ) : ''}
-                            </div>
-
-
                             {components.length ? (
-                                <div className="flex flex-col gap-4">
+                                <div className="flex flex-col">
+                                    
                                     {components.map((item, n) => {
                                         switch (item.type) {
+
+                                            case 'title':
+                                                return (
+                                                    <H2 size="LARGE">{item.title}</H2>
+                                                )
+
+                                            case 'leadParagraph':
+                                                return (
+                                                    <LeadParagraph>{item.body}</LeadParagraph>
+                                                )
 
                                             case 'details':
                                                 return (
                                                     <Details summary={item.title}>
-                                                        {item.body}
+                                                        <Paragraph>{item.body}</Paragraph>
                                                     </Details>
                                                 )
 
@@ -56,7 +55,7 @@ export default function SlideDefault(props) {
                                             case 'date':
                                                 return (
                                                     <DateField
-                                                        errorText="Error message goes here"
+                                                        errorText="Error message goes here. This is how they look."
                                                     >
                                                         {item.label}
                                                     </DateField>

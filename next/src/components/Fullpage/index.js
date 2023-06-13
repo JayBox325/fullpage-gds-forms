@@ -4,18 +4,27 @@ import ReactFullpage from '@fullpage/react-fullpage'
 import FullpageSlide from '../SlideDefault';
 import SlideWelcome from '../SlideWelcome';
 import SlideDefault from '../SlideDefault';
+import Image from 'next/image';
 
 export default function Fullpage() {
 
     const formSlides = [
         {
-            title: 'Middle slide',
-            introduction: "Sint mollit sunt exercitation deserunt ex eu labore sint est consequat occaecat. Ut nostrud nulla est ut adipisicing ullamco cupidatat et exercitation dolor ea tempor exercitation.",
+            title: 'How it works',
+            introduction: "These slides are made from an array of object items with a 'components' array within that holds objects of the components that build these slides. Below are 'details' and 'paragraph' components.",
             components: [
+                {
+                    type: 'title',
+                    title: 'How it works'
+                },
+                {
+                    type: 'leadParagraph',
+                    body: "These slides are made from an array of object items with a 'components' array within that holds objects of the components that build these slides. Below are 'details' and 'paragraph' components."
+                },
                 {
                     type: 'details',
                     title: 'This is a details component',
-                    body: <p>Ut cillum occaecat adipisicing ea nisi aute mollit.</p>
+                    body: 'Ut cillum occaecat adipisicing ea nisi aute mollit.'
                 },
                 {
                     type: 'paragraph',
@@ -25,6 +34,10 @@ export default function Fullpage() {
         },
         {
             components: [
+                {
+                    type: 'title',
+                    title: 'Tell us about yourself'
+                },
                 {
                     type: 'date',
                     label: 'What is your date of birth?'
@@ -56,33 +69,40 @@ export default function Fullpage() {
     ]
 
     return (
-        <ReactFullpage
-            //fullpage options
-            licenseKey={'YOUR_KEY_HERE'}
-            scrollingSpeed={1000} /* Options here */
+        <div className="bg-white h-screen relative bg-gradient-to-tr from-[rgba(196,181,253,0.5)] via-[rgba(245,208,254,0.5)] to-[rgba(207,250,254,0.5)]">
 
-            render={({ state, fullpageApi }) => {
-                return (
-                    <ReactFullpage.Wrapper>
+            {/* <Image src="/clouds.jpg" width={2000} height={1400} alt="" className="absolute top-0 left-0 bottom-0 right-0 object-cover opacity-30 z-10"/> */}
 
-                        <SlideWelcome
-                            title="Welcome to Formium by RIVIAM"
-                            introduction="This is an example build with the Gov.uk Design System and Fullpage.js."
-                            fullpageApi={fullpageApi}
-                        />
+            <div className="relative z-20">
+                <ReactFullpage
+                    //fullpage options
+                    licenseKey={'YOUR_KEY_HERE'}
+                    scrollingSpeed={1000} /* Options here */
 
-                        {formSlides.map((item,n) => (
-                            <SlideDefault
-                                key={n}
-                                totalSlides={formSlides.length}
-                                index={n}
-                                item={item}
-                                fullpageApi={fullpageApi}
-                            />
-                        ))}
-                    </ReactFullpage.Wrapper>
-                );
-            }}
-        />
+                    render={({ state, fullpageApi }) => {
+                        return (
+                            <ReactFullpage.Wrapper>
+
+                                <SlideWelcome
+                                    title="Reformerly by RIVIAM"
+                                    introduction="Welcome to Reformerly, combining the words referral and form (this is an available .com by the way!). This is a starter repo to showcase the potential pairing of FullPage.js and the Gov.uk Design System to build beautifully interactive forms from JSON."
+                                    fullpageApi={fullpageApi}
+                                />
+
+                                {formSlides.map((item,n) => (
+                                    <SlideDefault
+                                        key={n}
+                                        totalSlides={formSlides.length}
+                                        index={n}
+                                        item={item}
+                                        fullpageApi={fullpageApi}
+                                    />
+                                ))}
+                            </ReactFullpage.Wrapper>
+                        );
+                    }}
+                />
+            </div>
+        </div>
     )
 }

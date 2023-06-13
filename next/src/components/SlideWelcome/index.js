@@ -9,7 +9,7 @@ export default function SlideWelcome(props) {
     } = props || {}
 
     return (
-        <div className="section bg-white">
+        <div className="section">
 
             <Main>
                 <GridRow className="py-6 md:py-10 lg:py-12 xl:py-16 2xl:py-18">
@@ -19,7 +19,7 @@ export default function SlideWelcome(props) {
                             <div className="">
 
                                 {title ? (
-                                    <H1 size="LARGE">{title}</H1>
+                                    <H1 size="XLARGE">{title}</H1>
                                 ) : ''}
 
                                 {introduction ? (
