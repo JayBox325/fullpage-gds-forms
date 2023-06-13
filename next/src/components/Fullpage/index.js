@@ -1,12 +1,12 @@
 'use client'
 
 import ReactFullpage from '@fullpage/react-fullpage'
-import FullpageSlide from '../SlideDefault';
 import SlideWelcome from '../SlideWelcome';
 import SlideDefault from '../SlideDefault';
-import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Fullpage() {
+    const [showBackground, setShowBackground] = useState(false)
 
     const formSlides = [
         {
@@ -56,6 +56,14 @@ export default function Fullpage() {
             ]
         },
         {
+            title: 'This is a section that can scroll horizontally to other pages',
+            slides: [
+                'Slide',
+                'Another slide',
+                'Final slide'
+            ]
+        },
+        {
             introduction: 'This is a slide with an intro and a single field',
             components: [
                 {
@@ -69,7 +77,7 @@ export default function Fullpage() {
     ]
 
     return (
-        <div className="bg-white h-screen relative bg-gradient-to-tr from-[rgba(196,181,253,0.5)] via-[rgba(245,208,254,0.5)] to-[rgba(207,250,254,0.5)]">
+        <div className={`bg-white h-screen relative ${showBackground ? 'bg-gradient-to-tr from-[rgba(196,181,253,0.5)] via-[rgba(245,208,254,0.5)] to-[rgba(207,250,254,0.5)]' : ''}`}>
 
             {/* <Image src="/clouds.jpg" width={2000} height={1400} alt="" className="absolute top-0 left-0 bottom-0 right-0 object-cover opacity-30 z-10"/> */}
 
@@ -86,6 +94,8 @@ export default function Fullpage() {
                                 <SlideWelcome
                                     title="Reformerly by RIVIAM"
                                     introduction="Welcome to Reformerly, combining the words referral and form (this is an available .com by the way!). This is a starter repo to showcase the potential pairing of FullPage.js and the Gov.uk Design System to build beautifully interactive forms from JSON."
+                                    setShowBackground={setShowBackground}
+                                    showBackground={showBackground}
                                     fullpageApi={fullpageApi}
                                 />
 

@@ -1,10 +1,12 @@
-import { Button, ButtonArrow, Details, GridCol, GridRow, H1, Heading, LeadParagraph, Main } from 'govuk-react'
+import { Button, ButtonArrow, Details, GridCol, GridRow, H1, Heading, LeadParagraph, Main, Paragraph } from 'govuk-react'
 
 export default function SlideWelcome(props) {
 
     const {
         fullpageApi,
         title,
+        setShowBackground,
+        showBackground,
         introduction
     } = props || {}
 
@@ -25,6 +27,8 @@ export default function SlideWelcome(props) {
                                 {introduction ? (
                                     <LeadParagraph>{introduction}</LeadParagraph>
                                 ) : ''}
+                                
+                                <p>This can also have a background that is persistent. <button className="underline" onClick={()=>{setShowBackground(!showBackground)}}>Toggle background</button></p>
 
                                 <div className="pt-6 md:pt-10 xl:pt-16">
                                     <Button
